@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <style>
+            body {
+                color: #004643;
+                font-family: sans-serif;
+                font-size: 14px;
+                background-color: #eeeeee;
+                margin-top: 100px;
+            }
+
+            .container {
+                margin: 0 auto;
+                max-width: 400px;
+                padding: 30px;
+                /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+                background-color: #ffffff;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 40px;
+                margin-top: 0px;
+                color: #004643;
+                font-size: 35px;
+            }
+
+            form .field-group {
+                box-sizing: border-box;
+                clear: both;
+                padding: 4px 0;
+                position: relative;
+                margin: 1px 0;
+                width: 100%;
+            }
+
+            form .field-group > label {
+                color: #757575;
+                display: block;
+                margin: 0 0 5px 0;
+                padding: 5px 0 0;
+                position: relative;
+                word-wrap: break-word;
+            }
+
+            input {
+                font-size: 15px;
+                margin-bottom: 4%;
+                -webkit-appearance: none;
+                display: block;
+                background: #abd1c6;
+                color: #001e1d;
+                width: 100%;
+                border: none;
+                border-radius: 0;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid #004643;
+                background-color: transparent;
+            }
+
+            input[type=text]:focus {
+                border-color: #e16162;
+                outline: 0;
+            }
+
+            .button-container {
+                box-sizing: border-box;
+                clear: both;
+                margin: 1px 0 0;
+                padding: 4px 0;
+                position: relative;
+                width: 100%;
+            }
+
+            button[type=submit] {
+                background: #004643;
+                border: none;
+                border-radius: 30px;
+                color: #ffffff;
+                cursor: pointer;
+                display: block;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 15px 0;
+                margin-top: 12%;
+                text-align: center;
+                text-transform: uppercase;
+                width: 100%;
+                -webkit-transition: all 250ms ease;
+                -moz-transition: all 250ms ease;
+                -o-transition: all 250ms ease;
+                transition: all 250ms ease;
+            }
+            button[type=submit]:hover {
+                background: #abd1c6;
+                color: #004643;
+            }
+            nav {
+                margin: 0 auto;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            nav a, nav a:visited {
+                margin: 0 1rem;
+                text-decoration: none;
+                color: #004643;
+                font-weight: bold;
+                border-bottom: 1px solid #004643;
+                transition: all 0.2s ease;
+            }
+            nav a:hover {
+                border-bottom: 3px solid #004643;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <nav>
+                <a href="wifi.html">WiFi settings</a>
+                <a href="disconnect">Disconnect from WiFi</a>
+            </nav>
+            <h1 style="text-align: center;">Infinity Mirror Project</h1>
+            <form id="colorsetting">
+                <label>Red</label>
+                <input type="number" name="r">
+                <label>Green</label>
+                <input type="number" name="g">
+                <label>Blue</label>
+                <input type="number" name="b">
+                <button type="submit" value="Save">
+            </form>
+            
+        </div>
+    </body>
+</html>
