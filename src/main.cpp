@@ -12,7 +12,7 @@
 #define GREEN D6
 #define BLUE D8
 
-const int COLOUR_TIME_LENGTH = 3000;
+const int COLOUR_TIME_LENGTH = 2000;
 const int changeBy = 4;
 int r = 1023;
 int g = 0;
@@ -40,7 +40,8 @@ int correctNumber(int number) {
 
 // If current number is less than target number, increase current number by changeBy. 
 // If current number is greater than target number, decrease current number by changeBy.
-// if current number is less than or greater than target number by the value of changeBy, make it so current number equals target number
+// If current number is less than or greater than target number by the value of changeBy, 
+// make it so current number equals target number
 int transitionNumber(int n, int n2) {
   if (n2 > n) {
     n = correctNumber(n + changeBy);
@@ -73,7 +74,6 @@ void loop()
   doColour(r, g, b);
   delay(COLOUR_TIME_LENGTH);
 
-  // for(int counter = g; counter <= g2;counter++) {
   do {
 
     r = transitionNumber(r, r2);
