@@ -13,35 +13,44 @@
 #define BLUE D8
 
 const int COLOUR_TIME_LENGTH = 3000;
-float r = 255;
-float g = 0;
-float b = 0;
-float r2;
-float g2;
-float b2;
-
-// function converts a regular RGB number to one in the 0 - 1023 range (roughly)
-int rgbConverter(float number) {
-  int result;
-  result = 1023 - (number * 4);
-  return result;
-}
+const int changeBy = 4;
+int r = 1023;
+int g = 0;
+int b = 0;
+int r2;
+int g2;
+int b2;
 
 // function sends the colour to the LEDs
-void doColour(float r, float g, float b) {
-  analogWrite(RED, rgbConverter(r));
-  analogWrite(GREEN, rgbConverter(g));
-  analogWrite(BLUE, rgbConverter(b));
+void doColour(int r, int g, int b) {
+  analogWrite(RED, r);
+  analogWrite(GREEN, g);
+  analogWrite(BLUE, b);
 }
 
 // function makes sure numbers never overshoot 255 and never go negative
-float correctNumber(float number) {
-  if (number >= 255) {
-    number = 255;
+int correctNumber(int number) {
+  if (number >= 1023) {
+    number = 1023;
   } else if (number <= 0) {
     number = 0;
   }
   return number;
+}
+
+// If current number is less than target number, increase current number by changeBy. 
+// If current number is greater than target number, decrease current number by changeBy.
+// if current number is less than or greater than target number by the value of changeBy, make it so current number equals target number
+int transitionNumber(int n, int n2) {
+  if (n2 > n) {
+    n = correctNumber(n + changeBy);
+  } else if (n2 < n) {
+    n = correctNumber(n - changeBy);
+  }
+  if ((n >= n2-changeBy) && (n <= n2+changeBy)) {
+    n = n2;
+  }
+  return n;
 }
 
 void setup()
@@ -57,38 +66,28 @@ void loop()
 {
 
   // Target colour
-  r2 = round(random(0, 255));
-  g2 = round(random(0, 255));
-  b2 = round(random(0, 255));
+  r2 = random(0, 1023);
+  g2 = random(0, 1023);
+  b2 = random(0, 1023);
   
   doColour(r, g, b);
   delay(COLOUR_TIME_LENGTH);
 
   // for(int counter = g; counter <= g2;counter++) {
   do {
-    float changeBy = 0.5;
-    if (r2 > r) {
-      r = correctNumber(r + changeBy);
-    } else if (r2 < r) {
-      r = correctNumber(r - changeBy);
-    }
 
-    if (g2 > g) {
-      g = correctNumber(g + changeBy);
-    } else if (g2 < g) {
-      g = correctNumber(g - changeBy);
-    }
+    r = transitionNumber(r, r2);
+    g = transitionNumber(g, g2);
+    b = transitionNumber(b, b2);
 
-    if (b2 > b) {
-      b = correctNumber(b + changeBy);
-    } else if (b2 < b) {
-      b = correctNumber(b - changeBy);
-    }
     doColour(r, g, b);
-    // Serial.println(r);
-    // Serial.println(g);
-    // Serial.println(b);
+
+    Serial.println(r);
+    Serial.println(g);
+    Serial.println(b);
+
     delay(3);
+
   } while ( (r != r2) || (g != g2) || (b != b2) );
 
 }
